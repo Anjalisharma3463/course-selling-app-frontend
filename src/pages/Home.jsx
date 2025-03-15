@@ -4,20 +4,35 @@ import CourseCard from "../components/CourseCard";
 
 const Home = () => {
   const [courses, setCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getCourses()
-      .then((res) => setCourses(res.data))
-      .catch((err) => console.error(err));
+    const fetchCourses = async () => {
+      try {
+        const res = await getCourses(); // Await API response
+        console.log("Available courses:", res.data); // ✅ Log response
+        setCourses(res.data || []); // ✅ Ensure it's an array
+      } catch (err) {
+        console.error("Error fetching courses:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCourses();
   }, []);
+
+  if (loading) return <p>Loading courses...</p>;
 
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold mb-4">Available Courses</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {courses.map((course) => (
-          <CourseCard key={course._id} course={course} />
-        ))}
+        {courses.length > 0 ? (
+          courses.map((course) => <CourseCard key={course._id} course={course} />)
+        ) : (
+          <p>No courses available.</p>
+        )}
       </div>
     </div>
   );

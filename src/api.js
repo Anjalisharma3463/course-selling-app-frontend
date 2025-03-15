@@ -51,3 +51,27 @@ export const purchaseCourse = async (courseId) => {
       headers: { Authorization: `Bearer ${token}` },
     });
   };
+
+
+  export const fetchUserDetails = async (userId) => {
+    try {
+      console.log("fetchuserdetails called");
+      
+      const token = localStorage.getItem("token");
+  
+      if (!token) {
+        console.error("❌ No token found! User might not be logged in.");
+        return null;
+      }
+  
+      const response = await API.get(`/user/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+        console.log("response is sent by api fetchusedatlsL: ",response.data)
+      return response.data; // ✅ Return user data
+    } catch (error) {
+      console.error("❌ Failed to fetch user details:", error.response?.data || error.message);
+      return null; // Return null in case of error
+    }
+  };
+  

@@ -30,9 +30,12 @@ const PurchasedCourses = () => {
   if (courses.length === 0) return <p className="text-center">No purchased courses found.</p>;
 
   return (
+    <>
+    <p>Hello ,  {user.username}</p>
+    <p>Here are  your Purchased Courses...</p>
     <div className="grid grid-cols-3 gap-4 p-6">
       {courses.map((course) => (
-        <div key={course._id} className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
+          <div key={course._id} className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
           <h2 className="text-xl font-bold">{course.title}</h2>
           <p>{course.description}</p>
  
@@ -46,6 +49,7 @@ const PurchasedCourses = () => {
         </div>
       ))}
     </div>
+            </>
   );
 };
 

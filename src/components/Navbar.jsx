@@ -24,7 +24,7 @@ const Navbar = () => {
       <div>
         {user ? (
           <>
-            <span className="mr-4">Welcome, {user.name || "User"}</span> {/* ✅ Display actual user name */}
+            <span className="mr-4">Welcome, {user.username || "User"}</span> {/* ✅ Display actual user name */}
             <button onClick={handleLogout} className="bg-red-500 px-3 py-1 rounded">
               Logout
             </button>
