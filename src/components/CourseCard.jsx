@@ -1,37 +1,51 @@
-    import { useEffect ,useState } from "react";
-    import axios from "axios";
-         
-    const Courses = () => {
-    const [courses, setCourses] = useState([]);
+import { useContext, useState } from "react";
+import { purchaseCourse } from "../api"; // Import API function
+import { AuthContext } from "../context/AuthContext";
 
-    useEffect(() => {
-        axios.get("http://localhost:4000/api/admin/courses")
-        .then((response) => {
-            console.log("Fetched Courses:", response.data); // Debugging
-            setCourses(response.data);
-        })
-        .catch((error) => console.error("Error fetching courses:", error));
-    }, []);
+const CourseCard = ({ course }) => {
+  const { user } = useContext(AuthContext); // Get user context
+  const [isPurchased, setIsPurchased] = useState(
+    user?.purchasedCourses?.includes(course._id) || false
+  );
 
-    return (
-        <div className="grid grid-cols-1 gap-4">
-        {courses.map((course) => (
-            <div key={course._id} className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
-            <h2 className="text-xl font-bold">{course.title}</h2>
-            <p>{course.description}</p>
-            <p className="text-green-600 bg-white rounded w-fit p-2 m-2 font-semibold">₹{course.price}</p>
+  const handlePurchase = async () => {
+    if (!user) {
+      alert("❌ Please log in to purchase a course.");
+      return;
+    }
 
-            {/* 🟢 Image Fix */}
-            <img
-                src={`http://localhost:4000${course.image}`}
-                alt={course.title}
-                className="w-full h-48 object-cover mt-2"
-            />
-            <button  className="rounded-lg w-full bg-[#101828] mt-5 text-white font-bold p-2" >Buy</button>
-            </div>
-        ))}
-        </div>
-    );
-    };
+    try {
+      await purchaseCourse(course._id);
+      setIsPurchased(true); // Update state
+      alert("✅ Course purchased successfully!");
+    } catch (error) {
+      alert(error.response?.data?.message || "❌ Purchase failed.");
+    }
+  };
 
-    export default Courses;
+  return (
+    <div className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
+      <h2 className="text-xl font-bold">{course.title}</h2>
+      <p>{course.description}</p>
+      <p className="text-green-600 bg-white rounded w-fit p-2 m-2 font-semibold">₹{course.price}</p>
+
+      <img
+        src={`http://localhost:4000${course.image}`}
+        alt={course.title}
+        className="w-full h-48 object-cover mt-2"
+      />
+
+      <button
+        className={`rounded-lg w-full mt-5 font-bold p-2 ${
+          isPurchased ? "bg-gray-400 cursor-not-allowed" : "bg-[#101828] text-white"
+        }`}
+        onClick={handlePurchase}
+        disabled={isPurchased}
+      >
+        {isPurchased ? "✔ Purchased" : "Buy"}
+      </button>
+    </div>
+  );
+};
+
+export default CourseCard;

@@ -9,18 +9,19 @@ export const AuthProvider = ({ children }) => {
   
        
 
-  const login =  async (userData) => { 
+ const login = async (userData) => {
     if (userData?.token) {
       const decoded = jwtDecode(userData.token);
       localStorage.setItem("token", userData.token);
       console.log("decoded userid", decoded.id);
        
       const userdata = await fetchUserDetails(decoded.id); // Fetch details after login
-       console.log("userdata in loign",userdata);
-       setUser(userdata)
+      console.log("userdata in login", userdata);
+      
+      setUser({ ...userdata, purchasedCourses: userdata.purchasedCourses || [] }); // Ensure purchasedCourses exist
     }
   };
-
+  
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");

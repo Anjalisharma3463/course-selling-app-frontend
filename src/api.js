@@ -18,6 +18,8 @@ export const createCourse = (data, token) =>
 // User APIs
 export const userSignup = (data) => API.post("/user/signup", data);
 export const userLogin = (data) => API.post("/user/login", data);
+
+
 export const purchaseCourse = async (courseId) => {
   const token = localStorage.getItem("token");
 
@@ -27,7 +29,7 @@ export const purchaseCourse = async (courseId) => {
   }
 
   try {
-    const response = await API.post(`/courses/${courseId}`, {}, {
+    const response = await API.post(`user/courses/${courseId}`, {}, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
