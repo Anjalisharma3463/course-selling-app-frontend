@@ -7,7 +7,8 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchCourses 
+    = async () => {
       try {
         const res = await getCourses(); // Await API response
         console.log("Available courses:", res.data); // ✅ Log response

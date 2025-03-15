@@ -7,7 +7,8 @@ import Signup from "./pages/Signup";
  
 import AdminDashboard from "./pages/AdminDashboard";
   import Purchasedcourses from "./pages/Purchasedcourses";
-function App() {
+ 
+  function App() {
   return (
  
       <Router>
@@ -18,7 +19,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/user/purchased-courses" element={<Purchasedcourses  />} />
+    
+            <Route path="/purchased-courses" element={<Purchasedcourses  />} />
           </Routes>
         </div>
       </Router>

@@ -1,9 +1,11 @@
-import { useEffect, useState, useContext } from "react";
+import {  useEffect, useState, useContext } from "react";
 import { getCourses, createCourse } from "../api";
-import { AuthProvider } from "../context/AuthContext";
-
+import { AuthContext } from "../context/AuthContext";
+ 
 const AdminDashboard = () => {
-  const { user } = useContext(AuthProvider);
+  const { user } = useContext(AuthContext);
+
+
   const [courses, setCourses] = useState([]);
   const [newCourse, setNewCourse] = useState({
     title: "",
@@ -43,6 +45,8 @@ const AdminDashboard = () => {
       alert("Error adding course");
     }
   };
+
+ 
 
   return (
     <div className="p-6">
@@ -101,3 +105,5 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+

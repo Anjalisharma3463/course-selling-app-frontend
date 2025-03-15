@@ -25,7 +25,7 @@ const Navbar = () => {
       <Link to="/" className="text-xl font-bold">Course App</Link>
       <Link to="/" className="text-sm  font-bold"> Home</Link>
        {user ? (
-         <Link to="/user/purchased-courses" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold" > Your Purchased Courses</Link>
+         <Link to="/purchased-courses" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold" > Your Purchased Courses</Link>
 
        ) : (null)}
       
