@@ -48,7 +48,7 @@ const PurchasedCourses = () => {
           <p>{course.description}</p>
   
           <img
-            src={`http://localhost:4000${course.image}`}
+            src={course.image.startsWith("http") ? course.image : `https://course-selling-app-backend-ljls.onrender.com${course.image}`}
             alt={course.title}
             className="w-full h-48 object-cover mt-2"
           />

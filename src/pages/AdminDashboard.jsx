@@ -93,11 +93,8 @@ const AdminDashboard = () => {
         {courses.map((course) => (
           <div key={course._id} className="bg-white shadow-md p-4 rounded-lg">
             <img 
-  src={course.image.startsWith("http") ? course.image : `https://course-selling-app-backend-ljls.onrender.com${course.image}`} 
-  alt={course.title} 
-  className="w-full h-fit object-cover rounded-md" 
-/>
-
+            src={course.image.startsWith("http") ? course.image : `https://course-selling-app-backend-ljls.onrender.com${course.image}`}
+             alt={course.title} className="w-full h-fit object-cover rounded-md" />
             <h3 className="text-lg font-bold mt-2">{course.title}</h3>
             <p className="text-gray-600">{course.description}</p>
             <p className="text-blue-500 font-bold mt-2">₹{course.price}</p>
