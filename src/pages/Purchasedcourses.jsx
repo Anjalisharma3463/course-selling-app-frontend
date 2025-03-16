@@ -31,8 +31,8 @@ const PurchasedCourses = () => {
 
   return (
     <>
-    <p>Hello ,  {user.username}</p>
-    <p>Here are  your Purchased Courses...</p>
+    <p className=" font-bold" >Hello , {user.username}</p>
+    <p className=" font-bold">Here are  your Purchased Courses...</p>
     < div
     
     
