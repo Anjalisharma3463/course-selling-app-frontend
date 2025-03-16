@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { getPurchasedCourses } from "../api";
 import { AuthContext } from "../context/AuthContext";
-
+import { motion } from "motion/react"
 const PurchasedCourses = () => {
   const { user } = useContext(AuthContext);
   const [courses, setCourses] = useState([]);
@@ -33,20 +33,27 @@ const PurchasedCourses = () => {
     <>
     <p>Hello ,  {user.username}</p>
     <p>Here are  your Purchased Courses...</p>
-    <div className="grid grid-cols-3 gap-4 p-6">
+    < div
+    
+    
+    className="grid grid-cols-3 gap-4 p-6">
       {courses.map((course) => (
-          <div key={course._id} className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
+          <motion.div 
+          
+    whileHover={{ scale: 1.2 }}
+    whileTap={{ scale: 0.8 }} 
+
+          key={course._id} className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
           <h2 className="text-xl font-bold">{course.title}</h2>
           <p>{course.description}</p>
- 
-          {/* 🟢 Image Fix */}
+  
           <img
             src={`http://localhost:4000${course.image}`}
             alt={course.title}
             className="w-full h-48 object-cover mt-2"
           />
           <button  className="rounded-lg w-full bg-[#101828] mt-5 text-white font-bold p-2" >Watch</button>
-        </div>
+        </motion.div>
       ))}
     </div>
             </>

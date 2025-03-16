@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
-import { purchaseCourse } from "../api"; // Import API function
+import { purchaseCourse } from "../api"; 
 import { AuthContext } from "../context/AuthContext";
+import { motion } from "motion/react"
 
 const CourseCard = ({ course }) => {
-  const { user } = useContext(AuthContext); // Get user context
+  const { user } = useContext(AuthContext);  
   const [isPurchased, setIsPurchased] = useState(
     user?.purchasedCourses?.includes(course._id) || false
   );
@@ -16,15 +17,21 @@ const CourseCard = ({ course }) => {
 
     try {
       await purchaseCourse(course._id);
-      setIsPurchased(true); // Update state
+      setIsPurchased(true);  
       alert("✅ Course purchased successfully!");
     } catch (error) {
       alert(error.response?.data?.message || "❌ Purchase failed.");
     }
   };
 
+
+  
   return (
-    <div className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
+
+<motion.div 
+whileHover={{ scale: 1.2 }}
+whileTap={{ scale: 0.8 }}
+className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
       <h2 className="text-xl font-bold">{course.title}</h2>
       <p>{course.description}</p>
       <p className="text-green-600 bg-white rounded w-fit p-2 m-2 font-semibold">₹{course.price}</p>
@@ -32,7 +39,7 @@ const CourseCard = ({ course }) => {
       <img
         src={`http://localhost:4000${course.image}`}
         alt={course.title}
-        className="w-full h-48 object-cover mt-2"
+        className="w-full h-40 object-cover mt-2"
       />
 
       <button
@@ -44,7 +51,7 @@ const CourseCard = ({ course }) => {
       >
         {isPurchased ? "✔ Purchased" : "Buy"}
       </button>
-    </div>
+    </motion.div>
   );
 };
 

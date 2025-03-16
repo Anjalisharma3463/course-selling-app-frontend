@@ -40,7 +40,7 @@ const AdminDashboard = () => {
     try {
       await createCourse(formData, user.token);
       alert("Course added successfully!");
-      window.location.reload(); // Refresh to update course list
+      window.location.reload();  
     } catch (err) {
       alert("Error adding course");
     }
@@ -87,8 +87,7 @@ const AdminDashboard = () => {
           </button> 
         </form>
       </div>
-
-      {/* Course List */}
+ 
       <h3 className="text-xl font-bold mt-6">Existing Courses</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4   mt-4">
         {courses.map((course) => (

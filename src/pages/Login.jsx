@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext.jsx";
-// import axios from "axios";
+ 
 import { useNavigate } from "react-router-dom";
 import {userLogin} from "../api.js";
 const Login = () => {
@@ -10,11 +10,11 @@ const Login = () => {
  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Attempting login with:", form); // Check if role is correct here
+    console.log("Attempting login with:", form);  
   
     try {
       const { data } = await userLogin(form);
-      console.log("Login API Response:", data); // Check if role is being returned correctly from backend
+      console.log("Login API Response:", data);  
   
       login(data); 
       if(data.role === "admin"){
@@ -51,8 +51,7 @@ const Login = () => {
           className="w-full p-2 border rounded mt-2"
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
-        
-        {/* Role Selection Dropdown */}
+         
         <select
   className="w-full p-2 mt-2 border rounded-lg mb-3 bg-gray-100"
   value={form.role}

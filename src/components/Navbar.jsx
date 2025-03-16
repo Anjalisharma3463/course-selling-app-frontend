@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext"; // ✅ Correct import
-
+import { AuthContext } from "../context/AuthContext"; 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
 
@@ -10,21 +9,21 @@ const Navbar = () => {
     return null;
   }
 
-  const { user, logout } = authContext; // ✅ Use AuthContext correctly
+  const { user, logout } = authContext;  
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate("/"); // ✅ Redirect to home page after logout
+    navigate("/");  
   };
 
   return (
-    <nav className="bg-gray-900 text-white p-4 flex justify-between">
-      <div>
+    <nav className="inset-0 sticky bg-gray-900 text-white p-4 flex justify-between">
+      <div> 
 
-      <Link to="/" className="text-xl font-bold">Course App</Link>
-      <Link to="/" className="text-sm  font-bold"> Home</Link>
-       {user ? (
+      <Link to="/" className="text-xl font-bold">Coursify</Link>
+      <Link to="/" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold"> Home</Link>
+       {user && user.role === "student"? (
          <Link to="/purchased-courses" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold" > Your Purchased Courses</Link>
 
        ) : (null)}
@@ -33,7 +32,8 @@ const Navbar = () => {
       <div>
         {user ? (
           <>
-            <span className="mr-4">Welcome, {user.username || "User"}</span> {/* ✅ Display actual user name */}
+            <span className="mr-4">Welcome, {user.username || "User"}</span>  
+
             <button onClick={handleLogout} className="bg-red-500 px-3 py-1 rounded">
               Logout
             </button>

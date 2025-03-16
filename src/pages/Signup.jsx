@@ -40,7 +40,7 @@ const Signup = () => {
           className="w-full p-2 border rounded mt-2"
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
-          {/* Role Selection Dropdown */}
+          
           <select
   className="w-full p-2 mt-2 border rounded-lg mb-3 bg-gray-100"
   value={form.role}

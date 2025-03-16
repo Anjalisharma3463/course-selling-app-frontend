@@ -3,8 +3,7 @@ import axios from "axios";
 const API = axios.create({
   baseURL: "http://localhost:4000/api",  
 });
-
-// Admin APIs
+ 
 export const adminSignup = (data) => API.post("/admin/signup", data);
 export const adminLogin = (data) => API.post("/admin/login", data);
 export const createCourse = (data, token) =>
@@ -14,8 +13,7 @@ export const createCourse = (data, token) =>
 
 
   export const getCourses = () => API.get("/admin/courses");
-
-// User APIs
+ 
 export const userSignup = (data) => API.post("/user/signup", data);
 export const userLogin = (data) => API.post("/user/login", data);
 
@@ -24,7 +22,7 @@ export const purchaseCourse = async (courseId) => {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    console.error("❌ No token found! User might not be logged in.");
+    console.error(" No token found! User might not be logged in.");
     return;
   }
 
@@ -35,7 +33,7 @@ export const purchaseCourse = async (courseId) => {
 
     return response.data;
   } catch (error) {
-    console.error("❌ Error purchasing course:", error.response?.data || error.message);
+    console.error("  Error purchasing course:", error.response?.data || error.message);
     throw error;
   }
 };
@@ -62,7 +60,7 @@ export const purchaseCourse = async (courseId) => {
       const token = localStorage.getItem("token");
   
       if (!token) {
-        console.error("❌ No token found! User might not be logged in.");
+        console.error("  No token found! User might not be logged in.");
         return null;
       }
   
@@ -70,10 +68,10 @@ export const purchaseCourse = async (courseId) => {
         headers: { Authorization: `Bearer ${token}` },
       });
         console.log("response is sent by api fetchusedatlsL: ",response.data)
-      return response.data; // ✅ Return user data
+      return response.data;  
     } catch (error) {
-      console.error("❌ Failed to fetch user details:", error.response?.data || error.message);
-      return null; // Return null in case of error
+      console.error(" Failed to fetch user details:", error.response?.data || error.message);
+      return null;  
     }
   };
   
