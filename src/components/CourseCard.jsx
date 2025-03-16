@@ -37,7 +37,7 @@ className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
       <p className="text-green-600 bg-white rounded w-fit p-2 m-2 font-semibold">₹{course.price}</p>
 
       <img
-        src={`http://localhost:4000${course.image}`}
+        src={course.image.startsWith("http") ? course.image : `https://course-selling-app-backend-ljls.onrender.com${course.image}`}
         alt={course.title}
         className="w-full h-40 object-cover mt-2"
       />
