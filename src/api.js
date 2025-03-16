@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:4000/api",  
+  baseURL: "https://course-selling-app-backend-ljls.onrender.com/api",
+  
 });
  
 export const adminSignup = (data) => API.post("/admin/signup", data);
