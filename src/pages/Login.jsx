@@ -10,12 +10,10 @@ const Login = () => {
  
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Attempting login with:", form);  
-  
+   
     try {
       const { data } = await userLogin(form);
-      console.log("Login API Response:", data);  
-  
+   
       login(data); 
       if(data.role === "admin"){
         navigate("/admin/dashboard")

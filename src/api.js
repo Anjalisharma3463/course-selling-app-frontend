@@ -1,9 +1,12 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://course-selling-app-backend-ljls.onrender.com/api",
-  
+  baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,  
 });
+
+// const API = axios.create({
+//   baseURL: import.meta.env.VITE_BACKEND_URL,  
+// });
  
 export const adminSignup = (data) => API.post("/admin/signup", data);
 export const adminLogin = (data) => API.post("/admin/login", data);
@@ -11,7 +14,18 @@ export const createCourse = (data, token) =>
   API.post("/admin/courses", data, {
     headers: { Authorization: `Bearer ${token}` },
   });
-
+  export const getAdminCreatedCourse = (token) => {
+     
+    if (!token) {
+      console.error("No token found! User might not be logged in.");
+      return;
+    } 
+  
+    return API.get("/admin/yourcreatedcourses", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  };
+  
 
   export const getCourses = () => API.get("/admin/courses");
  
@@ -56,8 +70,7 @@ export const purchaseCourse = async (courseId) => {
 
   export const fetchUserDetails = async (userId) => {
     try {
-      console.log("fetchuserdetails called");
-      
+       
       const token = localStorage.getItem("token");
   
       if (!token) {
@@ -68,8 +81,7 @@ export const purchaseCourse = async (courseId) => {
       const response = await API.get(`/user/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-        console.log("response is sent by api fetchusedatlsL: ",response.data)
-      return response.data;  
+       return response.data;  
     } catch (error) {
       console.error(" Failed to fetch user details:", error.response?.data || error.message);
       return null;  

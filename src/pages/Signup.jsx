@@ -10,8 +10,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       await userSignup(form);
-      console.log("signup user data in frontend that is sent:" ,form);
-      alert("Signup successful!");
+       alert("Signup successful!");
       navigate("/login");
     } catch (err) {
       alert("Signup failed!");

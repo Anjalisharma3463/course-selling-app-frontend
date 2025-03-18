@@ -23,10 +23,24 @@ const Navbar = () => {
 
       <Link to="/" className="text-xl font-bold">Coursify</Link>
       <Link to="/" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold"> Home</Link>
-       {user && user.role === "student"? (
-         <Link to="/purchased-courses" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold" > Your Purchased Courses</Link>
+      
+      {user ? (   
+  user.role === "student" ? (
+    <Link to="/purchased-courses" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold">
+      Your Purchased Courses
+    </Link>
+  ) : user.role === "admin" ? (
+    <>
+      <Link to="/admin/yourcreatedcourses" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold">
+        Your Created Courses
+      </Link>
+      <Link to="/admin/dashboard" className="text-sm bg-[#37538d] rounded-sm p-1 ml-2 font-bold">
+        Create A New Course
+      </Link>
+    </>
+  ) : null
+) : null} 
 
-       ) : (null)}
       
       </div>
       <div>

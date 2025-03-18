@@ -11,11 +11,10 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     if (token) {
       const decoded = jwtDecode(token);
-      console.log("Decoded token:", decoded);
+     
 
       fetchUserDetails(decoded.id)
         .then((userdata) => {
-          console.log("User data fetched:", userdata);
           
           if (!userdata || !userdata.role) {
             console.error("Error: Role is missing in user data");
@@ -39,12 +38,10 @@ export const AuthProvider = ({ children }) => {
     if (userData?.token) {
       const decoded = jwtDecode(userData.token);
       localStorage.setItem("token", userData.token);
-      console.log("Decoded User ID:", decoded.id);
-
+ 
       try {
         const userdata = await fetchUserDetails(decoded.id);
-        console.log("Fetched user data in login:", userdata);
-
+ 
         if (!userdata || !userdata.role) {
           console.error("Error: User role is missing");
           return;

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCourses } from "../api";
 import CourseCard from "../components/CourseCard";
-import { motion } from "motion/react"
-const Home = () => {
+ const Home = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -11,8 +10,7 @@ const Home = () => {
     = async () => {
       try {
         const res = await getCourses(); 
-        console.log("Available courses:", res.data); 
-        setCourses(res.data || []);  
+         setCourses(res.data || []);  
       } catch (err) {
         console.error("Error fetching courses:", err);
       } finally {

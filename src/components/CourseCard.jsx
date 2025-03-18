@@ -36,11 +36,11 @@ className="p-4 border rounded-lg bg-[#37538d] text-white shadow-md">
       <p>{course.description}</p>
       <p className="text-green-600 bg-white rounded w-fit p-2 m-2 font-semibold">₹{course.price}</p>
 
-      <img
-        src={course.image.startsWith("http") ? course.image : `https://course-selling-app-backend-ljls.onrender.com${course.image}`}
-        alt={course.title}
-        className="w-full h-40 object-cover mt-2"
-      />
+      <img 
+  src={course.image.startsWith("http") ? course.image : `${import.meta.env.VITE_BACKEND_URL}${course.image}`} 
+  alt={course.title} 
+  className="w-full h-fit object-cover rounded-md" 
+/>
 
       <button
         className={`rounded-lg w-full mt-5 font-bold p-2 ${
